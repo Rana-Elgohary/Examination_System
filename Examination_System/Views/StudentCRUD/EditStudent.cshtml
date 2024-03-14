@@ -1,0 +1,71 @@
+﻿@model Student
+
+@{
+    Layout = null;
+    List<Track> track = ViewBag.TrackList;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EditStudent</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <form method="post">
+        <input asp-for="Id" type="hidden" /><br />
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+
+        <br />
+
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+
+        <br />
+
+        <label asp-for="Password"></label>
+        <input asp-for="Password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+
+        <br />
+
+        <label>Confirm Password</label>
+        <input asp-for="ConfirmPassword" class="form-control" />
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+
+        <br />
+
+        <label asp-for="Age"></label>
+        <input asp-for="Age" class="form-control" />
+        <span asp-validation-for="Age" class="text-danger"></span>
+
+        <br />
+
+        <label asp-for="Address"></label>
+        <input asp-for="Address" class="form-control" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+
+        <br />
+
+        <label asp-for="Image_ID"></label>
+        <input asp-for="Image_ID" class="form-control" />
+        <span asp-validation-for="Image_ID" class="text-danger"></span>
+
+        <br />
+
+        <label asp-for="TrackId"></label>
+        <select asp-for="TrackId" class="form-control">
+            @foreach (var item in track)
+            {
+                <option value="@item.TrackId">@item.Name</option>
+            }
+        </select>
+        <input type="submit" value="Edit" class="btn btn-info text-light" />
+    </form>
+</body>
+</html>

@@ -1,0 +1,22 @@
+﻿@model Topic
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddTrack</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+</head>
+<body>
+    <form method="post">
+        <input type="hidden" asp-for="Course_ID"  />
+        <label asp-for="Name"></label> <input type="text" asp-for="Name" value="@Model?.Name" />
+        <br />
+        <input type="submit" value="Add Topic" asp-route="Course_ID" />
+    </form>
+</body>
+</html>

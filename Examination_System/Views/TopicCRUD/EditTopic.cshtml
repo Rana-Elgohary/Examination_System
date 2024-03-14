@@ -1,0 +1,25 @@
+﻿@model Topic
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EditeTopic</title>
+</head>
+<body>
+    <form method="post">
+        <input type="hidden" asp-for="Topic_ID" />
+        <input type="hidden" asp-for="Course_ID" />
+
+        </br>
+        <label asp-for="Name"></label><input asp-for="Name" />
+        </br>
+        <input type="submit" value="Edit" />
+    </form>
+        
+</body>
+</html>

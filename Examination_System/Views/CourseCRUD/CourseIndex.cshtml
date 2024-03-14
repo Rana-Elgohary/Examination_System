@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Course>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <title>Index</title>
+</head>
+<body>
+    <div class="container">
+
+
+        @if (Model.Count() == 0)
+        {
+            <p class="text-danger">No Courses are available.</p>
+        }
+        else
+        {
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Course ID</th>
+                        <th>Name</th>
+                        <th>Hours</th>
+                        <th>Operation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Course_ID</td>
+                            <td>@item.Name</td>
+                            <td>@item.Hours</td>
+                            <td>
+
+                                <a asp-action="EditCourse" asp-controller="CourseCRUD" asp-route-Course_ID="@item.Course_ID">Update</a>
+                                <a asp-action="DeleteCourse" asp-controller="CourseCRUD" asp-route-Course_ID="@item.Course_ID">Delete</a>
+                                <a asp-action="ShowAllTopics" asp-controller="TopicCRUD" class="btn btn-info text-light" asp-route-CrsId="@item.Course_ID">Show Topics</a>
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        <a asp-action="CreateCourse" asp-controller="CourseCRUD" class="btn btn-primary">Add</a>
+    </div>
+</body>
+</html>

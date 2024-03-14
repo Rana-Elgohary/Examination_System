@@ -1,0 +1,33 @@
+﻿@model Instructor
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>NameOfCourses_ForInstructor_NumOfStudent</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Course Name</th>
+                <th>Number Of Students</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.InstructorCourse)
+            {
+                <tr>
+                    <td>@item.Course.Name</td>
+                    <td>@item.Course.studentCourses.Count()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

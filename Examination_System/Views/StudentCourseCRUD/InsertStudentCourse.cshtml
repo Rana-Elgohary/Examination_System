@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Student>
+@{
+    Layout = null;
+    List<Course> Crs = ViewBag.Courseid;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>InsertStudentCourse</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+</head>
+<body>
+    <form method="post">
+        <h4>Student<span class="label label-default"></span></h4>
+        <select class="form-select" name="Id">
+            <option selected>Select Student</option>
+            @foreach (var item in Model)
+            {
+                <option value="@item.Id">@item.Name</option>
+
+            }
+
+        </select>
+
+        <br />
+
+        <h4>Course <span class="label label-default"></span></h4>
+        <select class="form-select" name="Course_ID">
+            <option selected>Select Student</option>
+            @foreach (var item in Crs)
+            {
+                <option value="@item.Course_ID">@item.Name</option>
+
+            }
+
+        </select>
+        <br />
+        <input type="submit" value="Add" class="btn btn-secondary" />
+
+    </form>
+</body>
+</html>

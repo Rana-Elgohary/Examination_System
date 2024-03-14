@@ -1,0 +1,28 @@
+﻿@model Question
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+    <form method="post">
+        <label>Question</label><input type="text" name="Quest" value="@Model?.Quest" /><br />
+        <label>Corr_Answer</label><input type="text" name="Corr_Answer" value="@Model?.Corr_Answer" /><br />
+        <label>OPt1_Answer</label><input type="text" name="OPt1_Answer" value="@Model?.OPt1_Answer" /><br />
+        <label>OPt2_Answer</label><input type="text" name="OPt2_Answer" value="@Model?.OPt2_Answer" /><br />
+        <label>OPt3_Answer</label><input type="text" name="OPt3_Answer" value="@Model?.OPt3_Answer" /><br />
+        <label>Type</label><input type="text" name="Type" value="@Model?.Type" /><br />
+        <label>Quest_Deg</label><input type="text" name="Quest_Deg" value="@Model?.Quest_Deg" /><br />
+        <input type="hidden" name="Exam_ID" value="@ViewBag.examID" /><br />
+
+        <input type="submit" value="Add" />
+    </form>
+
+</body>
+</html>

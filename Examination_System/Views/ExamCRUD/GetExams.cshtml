@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Exam>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Get Exams</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+
+     <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Exam_ID</th>
+                <th>Duration</th>
+                <th>Course_ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count() == 0)
+            {
+                <tr>
+                    <td colspan="6">No Exams Found</td>
+                </tr>
+            }
+            else
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Exam_ID</td>
+                        <td>@item.Duration</td>
+                        <td>@item.Course_ID</td>
+                        <td>
+                            <a asp-action="EditExams" asp-controller="ExamCRUD" asp-route-Exam_ID="@item.Exam_ID" class="btn btn-primary">Edit</a>
+                            <a asp-action="DeleteExams" onclick="return confirm('Are you sure?')" asp-controller="ExamCRUD" asp-route-id=" @item.Exam_ID" class="btn btn-danger">Delete</a>
+                            <a asp-action="GetQuestion" asp-controller="QuestionCRUD" asp-route-Exam_ID="@item.Exam_ID" class="btn btn-info text-light">Show Questions</a>
+                        </td> 
+                    </tr>
+                }
+            }
+        </tbody>
+
+    </table>
+    <a class="btn btn-danger text-light" asp-action="CreateExams" asp-controller="ExamCRUD">Create</a>
+
+</body>
+</html>

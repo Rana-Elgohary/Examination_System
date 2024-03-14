@@ -1,0 +1,30 @@
+﻿@model Question
+@{
+    Layout = null;
+    SelectList sl = new SelectList(ViewBag.ExamsList, "Exam_ID", "Exam_ID", Model.Exam_ID);
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <form method="post">
+        <input asp-for="Ques_ID" type="hidden" /><br />
+        <label asp-for="Quest">Question</label><input asp-for="Quest" /><br />
+        <label asp-for="Corr_Answer">Corr_Answer</label><input asp-for="Corr_Answer" /><br />
+        <label asp-for="OPt1_Answer">OPt1_Answer</label><input asp-for="OPt1_Answer" /><br />
+        <label asp-for="OPt2_Answer">OPt2_Answer</label><input asp-for="OPt2_Answer" /><br />
+        <label asp-for="OPt3_Answer">OPt3_Answer</label><input asp-for="OPt3_Answer" /><br />
+        <label asp-for="Quest_Deg">Quest_Deg</label><input asp-for="Quest_Deg" /><br />
+        <label asp-for="Type">Type</label><input asp-for="Type" /><br />
+        <input asp-for="Exam_ID" type="hidden" /><br />
+
+        <input type="submit" value="Update" class="btn btn-info text-light" />
+    </form>
+
+</body>
+</html>

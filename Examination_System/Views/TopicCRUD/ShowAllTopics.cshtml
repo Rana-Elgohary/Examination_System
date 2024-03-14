@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Topic>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ShowAllTopics</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+</head>
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Topic Name</th>
+                <th>Operation</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Topic_ID</td>
+                    <td>@item.Name</td>
+                    <td>
+                        <a asp-action="EditTopic" asp-controller="TopicCRUD" asp-route-id="@item.Topic_ID" class="btn btn-info">Edit</a>
+                        <a asp-action="DeleteTopic" asp-controller="TopicCRUD" onclick="return confirm('Are you sure?')" asp-route-id="@item.Topic_ID" class="btn btn-info">Delete</a> 
+                        
+                        
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a asp-action="AddTopic" asp-controller="TopicCRUD" asp-route-CrsId="@ViewBag.Crsid" class="btn btn-info">Add Topic</a>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+﻿@model Course
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>TopicsData_By_CourseID</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Topic Name</th>
+                <th>Topic ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Topics)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Topic_ID</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

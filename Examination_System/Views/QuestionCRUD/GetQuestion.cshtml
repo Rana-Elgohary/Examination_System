@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Question>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Get Questions</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Ques_ID</th>
+                <th>Quest</th>
+                <th>Type</th>
+                <th>Corr_Answer</th>
+                <th>OPt1_Answer</th>
+                <th>OPt2_Answer</th>
+                <th>OPt3_Answer</th>
+                <th>Quest_Deg</th>
+                <th>Exam_ID</th>
+
+            </tr>
+        </thead>
+        <tbody>
+           
+               @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Ques_ID</td>
+                        <td>@item.Quest</td>
+                        <td>@item.Type</td>
+                        <td>@item.Corr_Answer</td>
+                        <td>@item.OPt1_Answer</td>
+                        <td>@item.OPt2_Answer</td>
+                        <td>@item.OPt3_Answer</td>
+                        <td>@item.Quest_Deg</td>
+                        <td>@item.Exam_ID</td>
+
+                        <td>
+                        <a asp-action="EditQuestion" asp-controller="QuestionCRUD" asp-route-ID="@item.Ques_ID" class="btn btn-primary">Edit</a>
+                        <a asp-action="DeleteQuestion" onclick="return confirm('Are you sure?')" asp-controller="QuestionCRUD" asp-route-id=" @item.Ques_ID" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            
+        </tbody>
+
+    </table>
+    <a class="btn btn-danger text-light" asp-route-Exam_id="@ViewBag.Examid" asp-action="CreateQuestion" asp-controller="QuestionCRUD">Create</a>
+
+</body>
+</html>

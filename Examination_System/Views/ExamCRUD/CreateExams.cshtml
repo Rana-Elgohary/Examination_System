@@ -1,0 +1,20 @@
+﻿@model Exam
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+    <form method="post">
+        <label>Duration</label><input type="text" name="Duration" value="@Model?.Duration" /><br />
+        <label>Course_ID</label><input type="text" name="Course_ID" value="@Model?.Course_ID" /><br />
+        <input type="submit" value="Add" />
+    </form>
+</body>
+</html>

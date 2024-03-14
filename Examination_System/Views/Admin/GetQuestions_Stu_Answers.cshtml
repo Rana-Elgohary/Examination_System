@@ -1,0 +1,42 @@
+﻿@model Exam
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetQuestions_Stu_Answers</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>Student Answer</th>
+                <th>If Correct</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model.Questions)
+        {
+            <tbody>
+                <tr>
+                    <td>@item.Quest</td>
+                    @foreach (var ans in item.StudentAnswers)
+                    {
+                        if (ans.Stud_Id == ViewBag.StuId)
+                        {
+                            <td>@ans.Student_Answer</td>
+                            <td>@ans.If_Correct</td>
+                        }
+                    }
+                </tr>
+            </tbody>
+        }
+    </table>
+</body>
+</html>

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Examination_System.ViewModels.DisplayStudentAnswers>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Question ID</th>
+                <th>Question</th>
+                <th>Correct Answer</th>
+                <th>Option 1</th>
+                <th>Option 2</th>
+                <th>Option 3</th>
+                <th>Student Answer</th>
+                <th>Correct?</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Ques_ID</td>
+                    <td>@item.Quest</td>
+                    <td>@item.Corr_Answer</td>
+                    <td>@item.OPt1_Answer</td>
+                    <td>@item.OPt2_Answer</td>
+                    <td>@item.OPt3_Answer</td>
+                    <td>@item.Student_Answer</td>
+                    <td>@(item.If_Correct ? "Yes" : "No")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

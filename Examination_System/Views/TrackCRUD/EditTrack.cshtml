@@ -1,0 +1,31 @@
+﻿@model Track
+@{
+    Layout = null;
+    List<Instructor> Instructorlist = ViewBag.Instructorlist;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <form method="post">
+        <label asp-for="Name"></label><input asp-for="Name" class="form-control" /><br />
+        <label asp-for="Description"></label><input asp-for="Description" class="form-control" /><br />
+        <label for="Supervisor">Supervisor</label>
+        <select asp-for="Supervisor">
+            @foreach (var item in Instructorlist)
+            {
+
+                <option value="@item.Ins_Id">@item.Name</option>
+            }
+
+        </select>
+        <input type="submit" value="Update" class="btn btn-info text-light" />
+    </form>
+</body>
+</html>

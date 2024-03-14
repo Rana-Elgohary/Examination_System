@@ -1,0 +1,22 @@
+﻿@model Course
+@{
+    Layout = null;
+    SelectList SL = new SelectList(ViewBag.CourseList, "Course_ID", "Name", Model.Course_ID);
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <form method="post">
+        <label asp-for="Name"></label><input asp-for="Name" class="form-control" /><br />
+        <label asp-for="Hours"></label><input asp-for="Hours" class="form-control" /><br />
+        <input type="submit" value="Update" class="btn btn-info text-light" />
+    </form>
+</body>
+</html>

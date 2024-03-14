@@ -1,0 +1,54 @@
+﻿@model Exam
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetQuestions_Choices</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>Option1</th>
+                <th>Option2</th>
+                <th>Option3</th>
+                <th>Option4</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model.Questions)
+        {
+            @if(item.Type == "MCQ")
+            {
+                <tbody>
+                    <tr>
+                        <td>@item.Quest</td>
+                        <td>@item.Corr_Answer</td>
+                        <td>@item.OPt1_Answer</td>
+                        <td>@item.OPt2_Answer</td>
+                        <td>@item.OPt3_Answer</td>
+                    </tr>
+                </tbody>
+            }
+            else
+            {
+                <tbody>
+                    <tr>
+                        <td>@item.Quest</td>
+                        <td>@item.Corr_Answer</td>
+                        <td>@item.OPt1_Answer</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            }
+        }
+    </table>
+</body>
+</html>

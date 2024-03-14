@@ -1,0 +1,85 @@
+﻿@model Instructor
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Instructor</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <h1>Hello @Model.Name</h1>
+    <br />
+
+    @* <a asp-action="NameOfCourses_ForInstructor_NumOfStudent" asp-controller="Admin" asp-route-InsID="@Model.Ins_Id" class="btn btn-success">Show Courses</a> *@
+    
+    <form asp-controller="Admin" asp-action="NameOfCourses_ForInstructor_NumOfStudent" >
+        <input type="text" name="InsID" placeholder="Instructor ID" />
+        <input type="submit" value="Show Courses" class="btn btn-success" />
+    </form>
+    <br />
+
+    <form asp-controller="Admin" asp-action="theStudentsInformationAccordingToTrackId">
+        <input type="text" name="TrackID" placeholder="Track ID" />
+        <input type="submit" value="Show StudentByTrack" class="btn btn-success" />
+    </form>
+
+    <br />
+    <form asp-controller="Admin" asp-action="takesStdIDAndReturnsGradesInAllCourses">
+        <input type="text" name="StdID" placeholder="Student ID" />
+        <input type="submit" value="Show StudentGradesById" class="btn btn-success" />
+    </form>
+    
+    <br />
+    <form asp-controller="Admin" asp-action="TopicsData_By_CourseID">
+        <input type="text" name="CoursesID" placeholder="Course ID" />
+        <input type="submit" value="Show Topics" class="btn btn-success" />
+    </form>
+
+    <br />
+
+    <form asp-controller="Admin" asp-action="GetQuestions_Choices">
+        <input type="text" name="ExId" placeholder="Exam ID" />
+        <input type="submit" value="Show Exam" class="btn btn-success" />
+    </form>
+    <br />
+
+    <form asp-controller="Admin" asp-action="GetQuestions_Stu_Answers">
+        <input type="text" name="ExId" placeholder="Exam ID" />
+        <input type="text" name="StuId" placeholder="Student ID" />
+        <input type="submit" value="Show Exam" class="btn btn-success" />
+    </form>
+
+    <br />
+    <a asp-action="ShowStudents" asp-controller="StudentCRUD" class="btn btn-info text-light">Show Students</a>
+    <br />
+    <a asp-action="ShowInstructors" asp-controller="InstructorCRUD" class="btn btn-info text-light">Show Instructors</a>
+    <br />
+    <a asp-action="CourseIndex" asp-controller="CourseCRUD" class="btn btn-info text-light">Show Courses</a>
+    <br />
+    <a asp-action="GetExams" asp-controller="ExamCRUD" class="btn btn-info text-light">Show Exams</a>
+    <br />
+    <a asp-action="ShowInstructorCourse" asp-controller="InstructorCourseCRUD" class="btn btn-info text-light">Show InstructorCourses</a>
+    <br />
+    <a asp-action="ShowStudentCourse" asp-controller="StudentCourseCRUD" class="btn btn-info text-light">Show StudentCourse</a>
+    <br />
+    <a asp-action="TrackIndex" asp-controller="TrackCRUD" class="btn btn-info text-light">Show Tracks</a>
+    <br />
+    <a asp-action="ShowTrackInstructor" asp-controller="TrackInstructorCRUD" class="btn btn-info text-light">Show TrackInstructor</a>
+
+
+
+
+
+
+
+    <br />
+
+    <a class="" asp-area="" asp-controller="Login" asp-action="LogOut">Logout</a>
+</body>
+</html>

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Track_Instructor>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ShowTrackInstructor</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Track</th>
+                <th>Instructor</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count() == 0)
+            {
+                <tr>
+                    <td colspan="2">No TrackInstructor Found</td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Track.Name</td>
+                        <td>@item.instructor.Name</td>
+                        <td>
+                            <a class="btn btn-danger" asp-action="DeleteTrackInstructor" asp-controller="TrackInstructorCRUD" onclick="return confirm (' Are you sure?')" asp-route-idstring="@String.Join(",", item.TrackId, item.Ins_Id)">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <a asp-action="InsertTrackInstructor" asp-controller="TrackInstructorCRUD" class="btn btn-info">Add</a>
+</body>
+</html>

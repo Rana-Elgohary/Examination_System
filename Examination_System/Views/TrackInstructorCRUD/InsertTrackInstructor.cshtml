@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Instructor>
+@{
+    Layout = null;
+    List<Track> TrackList = ViewBag.Track;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>InsertTrackInstructor</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body>
+    <form method="post">
+        <h4>Track <span class="label label-default"></span></h4>
+        <select class="form-select" name="Trackid">
+            <option selected>Select Track</option>
+            @foreach (var item in TrackList)
+            {
+                <option value="@item.TrackId">@item.Name</option>
+            }
+        </select>
+
+        <br />
+
+        <h4>Course <span class="label label-default"></span></h4>
+        <select class="form-select" name="Insid">
+            <option selected>Select Instructor</option>
+            @foreach (var item in Model)
+            {
+                <option value="@item.Ins_Id">@item.Name</option>
+            }
+        </select>
+
+        <input type="submit" value="Add" class="btn btn-secondary" />
+    </form>
+</body>
+</html>
