@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Examination_System.styles.css" asp-append-version="true" />
+    <style>
+        header, footer {
+            display: none; /* Hide the header and footer */
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -36,7 +41,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer>
         <div class="container">
             &copy; 2024 - Examination_System - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
