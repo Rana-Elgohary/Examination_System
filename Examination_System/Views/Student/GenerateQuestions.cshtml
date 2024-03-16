@@ -1,7 +1,9 @@
 ﻿@model List<Question>
 
 @{
-   var Duration = ViewBag.duration;
+    var Duration = ViewBag.duration;
+    var StdName=ViewBag.StudentName;
+    var CrsName = ViewBag.CrsName;
     Layout = null;
 }
 
@@ -16,7 +18,8 @@
     <style>
         body {
             padding: 20px;
-            margin:50px;
+            margin-right:20%;
+            margin-left: 20%;
         }
 
         .question-container {
@@ -31,9 +34,32 @@
             margin-bottom: 5px;
             display: block;
         }
+
+        .ViewDetails{
+            background-color:darkred;
+            height:170px;
+            text-align:center;
+            color:floralwhite;
+            margin-bottom:1cm;
+            padding:20px;
+
+        }
+
+        .p-3 {
+            border: 2px solid darkred;
+        }
+
+        .DarkredBtn{
+            background-color:darkred;
+        }
     </style>
 </head>
 <body>
+    <div class="ViewDetails">
+        <h3> Student Name : @StdName</h3>
+        <h3>Course Name : @CrsName</h3>
+        <h3>Exam Duration :@Duration</h3>
+    </div>
     <form id="examForm" asp-controller="StudentAnswer" asp-action="AnswerHandling">
         @for (int i = 0; i < Model.Count; i++)
         {
@@ -61,16 +87,17 @@
                 @if (question.Type == "MCQ")
                 {
                     <div class="options-container d-flex flex-column mb-3">
-                        <label class="p-3  bg-opacity-10 border border-danger border-start-0 rounded-end">
+                        <label class="p-3 bg-opacity-10  ">
                             <input type="radio" name="Answer.@question.Ques_ID" value="@answerChoices[0]" /> @answerChoices[0]
                         </label>
-                        <label class="p-3  bg-opacity-10 border border-danger border-start-0 rounded-end">
+
+                        <label class="p-3 bg-opacity-10  ">
                             <input type="radio" name="Answer.@question.Ques_ID" value="@answerChoices[1]" /> @answerChoices[1]
                         </label >
-                        <label class="p-3  bg-opacity-10 border border-danger border-start-0 rounded-end">
+                        <label class="p-3 bg-opacity-10  ">
                             <input type="radio" name="Answer.@question.Ques_ID" value="@answerChoices[2]" /> @answerChoices[2]
                         </label>
-                        <label class="p-3  bg-opacity-10 border border-danger border-start-0 rounded-end">
+                        <label class="p-3 bg-opacity-10  ">
                             <input type="radio" name="Answer.@question.Ques_ID" value="@answerChoices[3]" /> @answerChoices[3]
                         </label>
                     </div>
@@ -78,10 +105,10 @@
                 else if (question.Type == "TF")
                 {
                     <div class="options-container  d-flex flex-column mb-3" >
-                        <label class="p-3  bg-opacity-10 border border-danger border-start-0 rounded-end">
+                        <label class="p-3 bg-opacity-10  ">
                             <input type="radio" name="Answer.@question.Ques_ID" value="@answerChoices[0]" /> @answerChoices[0]
                         </label>
-                        <label class="p-3  bg-opacity-10 border border-danger border-start-0 rounded-end">
+                        <label class="p-3 bg-opacity-10  ">
                             <input type="radio" name="Answer.@question.Ques_ID" value="@answerChoices[1]" /> @answerChoices[1]
                         </label>
                     </div>
@@ -90,7 +117,7 @@
             </div>
 
         }
-        <input class="btn btn-danger text-light" type="submit" value="Submit Answers" />
+        <input class="btn btn-danger DarkredBtn text-light" type="submit" value="Submit Answers" />
     </form>
 
     <!-- JavaScript for timer and redirection -->

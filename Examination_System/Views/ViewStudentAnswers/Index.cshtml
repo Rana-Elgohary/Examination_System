@@ -1,6 +1,10 @@
 ﻿@model IEnumerable<Examination_System.ViewModels.DisplayStudentAnswers>
 
 @{
+    var Duration = ViewBag.Duration;
+    var StdName = ViewBag.StdName;
+    var CrsName = ViewBag.CrsName;
+    float grade=ViewBag.Grade;
     Layout = null;
 }
 
@@ -9,38 +13,174 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <title>GenerateQuestions</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+            margin-right:20%;
+            margin-left: 20%;
+        }
+
+        .question-container {
+            margin-bottom: 20px;
+        }
+
+        .options-container {
+            padding-left: 20px;
+        }
+
+        .option-label {
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .ViewDetails{
+            background-color:darkred;
+            height:170px;
+            text-align:center;
+            color:floralwhite;
+            margin-bottom:1cm;
+            padding:20px;
+
+        }
+
+        .p-3 {
+            border: 2px solid darkred;
+        }
+
+        .DarkredBtn{
+            background-color:darkred;
+        }
+        .Correct{
+            background-color:mediumseagreen;
+        }
+
+        .Wrong{
+            background-color:firebrick;
+        }
+    </style>
 </head>
 <body>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Question ID</th>
-                <th>Question</th>
-                <th>Correct Answer</th>
-                <th>Option 1</th>
-                <th>Option 2</th>
-                <th>Option 3</th>
-                <th>Student Answer</th>
-                <th>Correct?</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.Ques_ID</td>
-                    <td>@item.Quest</td>
-                    <td>@item.Corr_Answer</td>
-                    <td>@item.OPt1_Answer</td>
-                    <td>@item.OPt2_Answer</td>
-                    <td>@item.OPt3_Answer</td>
-                    <td>@item.Student_Answer</td>
-                    <td>@(item.If_Correct ? "Yes" : "No")</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <div class="ViewDetails">
+        <h3> Student Name : @StdName</h3>
+        <h3>Course Name : @CrsName</h3>
+        <h3> Student Grade:@grade</h3>
+
+    </div>
+    <form >
+        @foreach (var item in Model)
+        {
+            <div class="question-container">
+
+                @if (item.type == "MCQ")
+                {
+                    if (item.If_Correct == true)
+                    {
+                        <p><strong>@item.Quest : 1/1 </strong> </p>
+
+                        <div class="options-container d-flex flex-column mb-3">
+                            <label class="p-3 bg-opacity-10 Correct ">
+                            <input type="radio" /> @item.Corr_Answer
+                        </label>
+
+                        <label class="p-3 bg-opacity-10  ">
+                            <input type="radio"  /> @item.OPt1_Answer
+                        </label>
+                        <label class="p-3 bg-opacity-10  ">
+                                <input type="radio" /> @item.OPt2_Answer
+                            </label>
+                        <label class="p-3 bg-opacity-10  ">
+                                <input type="radio" /> @item.OPt3_Answer
+                            </label>
+                        </div>
+                    }
+                    else
+                    {
+                        <p><strong>@item.Quest : 0/1</strong> </p>
+
+                        <div class="options-container d-flex flex-column mb-3">
+                            <label class="p-3 bg-opacity-10 Correct ">
+                                <input type="radio"  /> @item.Corr_Answer
+                            </label>
+
+                            <label class="p-3 bg-opacity-10 Wrong ">
+                                <input type="radio" /> @item.Student_Answer
+                            </label>
+                            <label class="p-3 bg-opacity-10  ">
+                                <input type="radio" /> @item.OPt2_Answer
+                            </label>
+                            <label class="p-3 bg-opacity-10  ">
+                                <input type="radio" /> @item.OPt3_Answer
+                            </label>
+                        </div>
+                    }
+                }
+                else if (item.type == "TF")
+                {
+                    if (item.If_Correct)
+                    {
+                        <p><strong>@item.Quest : 1/1</strong> </p>
+
+                        <div class="options-container  d-flex flex-column mb-3">
+                            <label class="p-3 bg-opacity-10 Correct ">
+                                <input type="radio"  /> @item.Corr_Answer
+                            </label>
+                        <label class="p-3 bg-opacity-10  ">
+                                <input type="radio" /> @item.OPt1_Answer
+                            </label>
+                        </div>
+                    }
+                    else
+                    {
+                        <p><strong>@item.Quest : 0/1</strong> </p>
+
+                        <div class="options-container  d-flex flex-column mb-3">
+                            <label class="p-3 bg-opacity-10 Correct ">
+                                <input type="radio"  /> @item.Corr_Answer
+                            </label>
+                            <label class="p-3 bg-opacity-10 Wrong ">
+                                <input type="radio"  /> @item.Student_Answer
+                            </label>
+                        </div>
+                    }
+                }
+
+            </div>
+
+        }
+    </form>
 </body>
 </html>
+
+
+@* <table class="table">
+    <thead>
+        <tr>
+            <th>Question ID</th>
+            <th>Question</th>
+            <th>Correct Answer</th>
+            <th>Option 1</th>
+            <th>Option 2</th>
+            <th>Option 3</th>
+            <th>Student Answer</th>
+            <th>Correct?</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Ques_ID</td>
+                <td>@item.Quest</td>
+                <td>@item.Corr_Answer</td>
+                <td>@item.OPt1_Answer</td>
+                <td>@item.OPt2_Answer</td>
+                <td>@item.OPt3_Answer</td>
+                <td>@item.Student_Answer</td>
+                <td>@(item.If_Correct ? "Yes" : "No")</td>
+            </tr>
+        }
+    </tbody>
+</table> *@
