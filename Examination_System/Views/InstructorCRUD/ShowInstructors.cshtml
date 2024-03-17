@@ -94,7 +94,7 @@
                             <td>@item.Salary</td>
                             <td>@item.HiringDate</td>
                             <td>
-                                <a asp-action="EditInstructor" asp-controller="InstructorCRUD" asp-route-id=" @item.Ins_Id" class="btn btn-primary">Edit</a>
+                                <a asp-action="EditInstructor" asp-controller="InstructorCRUD" asp-route-id=" @item.Ins_Id" class="btn btn-primary m-1">Edit</a>
                                 <a asp-action="DeleteInstructor" onclick="return confirm('Are you sure?')" asp-controller="InstructorCRUD" asp-route-id=" @item.Ins_Id" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
