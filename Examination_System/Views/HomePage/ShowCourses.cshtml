@@ -42,7 +42,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('/images/iti.jpg');
+            background-image: url('/Images/iti.jpg');
             background-size: cover;
             background-position: center bottom;
             background-repeat: no-repeat;
@@ -76,7 +76,7 @@
 
     <!------------------------------------------------------ NavBar ------------------------------------------------------>
     <nav class="navbar bg-light sticky-top d-flex justify-content-around align-items-center">
-        <img src="/images/logo.png" class="logo" />
+        <img src="/Images/logo.png" class="logo" />
         <div class="d-flex ms-4 align-items-center fw-medium">
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -90,11 +90,11 @@
     <section class="text-center mt-5 mb-5 w-50 m-auto">
         @if(@Model.Image_ID != null)
         {
-            <img src="/images/Students/@Model.Image_ID" class="studentImg rounded-circle border border-5 border-light shadow-lg" />
+            <img src="/Images/Students/@Model.Image_ID" class="studentImg rounded-circle border border-5 border-light shadow-lg" />
         }
         else
         {
-            <img src="/images/anonymous_person.jpg" class="studentImg rounded-circle border border-5 border-light shadow-lg" />
+            <img src="/Images/anonymous_person.jpg" class="studentImg rounded-circle border border-5 border-light shadow-lg" />
         }
         <h1>@Model.Name</h1>
         <h6 class="text-secondary">@Model.Email</h6>
@@ -133,7 +133,7 @@
     <!------------------------------------------------------ Footer ------------------------------------------------------>
     <footer class="header d-flex text-light justify-content-between align-items-center">
         <div class="logoAndP w-50">
-            <img class="w-25" src="/images/whiteLogo.png" />
+            <img class="w-25" src="/Images/whiteLogo.png" />
             <p class="grayColor mt-2">Over 30 years, ITI has kept updating its training portfolio thru continuous monitoring for the future global tech trends, as well as the country’s national and mega projects, hence; sustaining its graduates’ employment percentage to 85 prior their graduation.</p>
         </div>
         <div>

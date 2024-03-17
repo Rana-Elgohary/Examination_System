@@ -25,5 +25,7 @@ namespace Examination_System.Controllers
             var model = db.Instructor.SingleOrDefault(s => s.Ins_Id == id);
             return View(model);
         }
+
+
     }
 }
