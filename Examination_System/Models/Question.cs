@@ -12,7 +12,7 @@ namespace Examination_System.Models
         [StringLength(500)]
         public string Corr_Answer {  get; set; }
         [StringLength(500)]
-        public string? OPt1_Answer { get; set; }
+        public string ?OPt1_Answer { get; set; }
         [StringLength(500)]
         public string? OPt2_Answer { get; set; }
         [StringLength(500)]
