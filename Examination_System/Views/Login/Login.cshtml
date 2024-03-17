@@ -33,7 +33,7 @@
         }
 
         .login-container {
-            background-color: rgba(255, 255, 255, 0.8); /* Set a background color with opacity */
+            background-color: rgba(255, 255, 255); /* Set a background color with opacity */
             border-radius: 10px;
             box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
             padding: 30px;
@@ -90,10 +90,10 @@
 <body>
     <div class="background-image"></div>
     <div class="login-container">
-        <div class="title">
+        <div class="title text-dark">
             Welcome
         </div>
-        <div class="subtitle">
+        <div class="subtitle text-dark">
             Login to your account
         </div>
         <form asp-action="Login" method="post">
