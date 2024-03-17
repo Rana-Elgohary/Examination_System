@@ -1,5 +1,6 @@
 ﻿using Examination_System.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Examination_System.Controllers
 {
