@@ -12,16 +12,21 @@
     <title>Index</title>
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary " style="background-color:darkred ">
+        <div class="container-fluid">
+            <img src="~/whitelogo.svg" alt="Logo" width="200" height="90" class="d-inline-block align-text-top" />
+        </div>
+    </nav>
     <div class="container">
-
-
-        @if (Model.Count() == 0)
-        {
-            <p class="text-danger">No Track are available.</p>
-        }
-        else
-        {
-            <table class="table table-bordered table-hover">
+        <div class="text-center" style="height: 100vh">
+            <h3 class="justify-content-center mt-5">Tracks Data</h3>
+            @if (Model.Count() == 0)
+            {
+             <p class="text-danger">No Tracks are available.</p>
+            }
+            else
+            {
+            <table class="table table-bordered table-hover border-danger align-items-center justify-content-center mt-5">
                 <thead>
                     <tr>
                         <th>Track ID</th>
@@ -34,29 +39,29 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>@item.TrackId</td>
-                            <td>@item.Name</td>
-                            <td>@item.Description</td>
-                            @if (@item.Instructor?.Name==null)
-                            {
-                                <td>-</td>
-                            }
-                            else
-                            {
-                                <td>@item.Instructor.Name</td>
-
-                            }
-                            <td>
-                                <a asp-action="EditTrack" asp-controller="TrackCRUD" asp-route-TrackId="@item.TrackId">Update</a>
-                                <a asp-action="DeleteTrack" asp-controller="TrackCRUD" asp-route-TrackId="@item.TrackId">Delete</a>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>@item.TrackId</td>
+                        <td>@item.Name</td>
+                        <td>@item.Description</td>
+                        @if (@item.Instructor?.Name==null)
+                        {
+                        <td>-</td>
+                        }
+                        else
+                        {
+                        <td>@item.Instructor.Name</td>
+                        }
+                        <td>
+                                    <a asp-action="EditTrack" asp-controller="TrackCRUD" asp-route-TrackId="@item.TrackId" class="btn btn-info">Update</a>
+                                    <a asp-action="DeleteTrack" asp-controller="TrackCRUD" asp-route-TrackId="@item.TrackId" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>
-        }
-        <a asp-action="CreateTrack" asp-controller="TrackCRUD" class="btn btn-primary">Add</a>
+            }
+            <a asp-action="CreateTrack" asp-controller="TrackCRUD" class="btn btn-success">Add New Track</a>
+        </div>
     </div>
 </body>
 </html>

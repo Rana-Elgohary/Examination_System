@@ -13,52 +13,62 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 </head>
 <body>
-    <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Age</th>
-                <th>Email</th>
-                <th>Password</th>
-                <th>Address</th>
-                <th>Image ID</th>
-                <th>Salary</th>
-                <th>Hiring Date</th>
-                <th>Operations</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (Model.Count() == 0)
-            {
+    <nav class="navbar navbar-expand-lg bg-body-tertiary " style="background-color:darkred ">
+        <div class="container-fluid">
+            <img src="~/whitelogo.svg" alt="Logo" width="200" height="90" class="d-inline-block align-text-top" />
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="text-center" style="height: 100vh">
+             <h3 class="justify-content-center mt-5">Instructors Data</h3>
+            <table class="table table-bordered border-danger table-hover align-items-center justify-content-center mt-5">
+    
+            <thead>
                 <tr>
-                    <td colspan="10">No Instructors Found</td>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Email</th>   
+                    <th>Address</th>
+                    <th>Image ID</th>
+                    <th>Salary</th>
+                    <th>Hiring Date</th>
+                    <th>Operations</th>
                 </tr>
-            }
-            else
-            {
-                foreach (var item in Model)
+            </thead>
+            <tbody>
+                @if (Model.Count() == 0)
                 {
                     <tr>
-                        <td>@item.Img_Id</td>
-                        <td>@item.Name</td>
-                        <td>@item.Age</td>
-                        <td>@item.Email</td>
-                        <td>@item.Password</td>
-                        <td>@item.Address</td>
-                        <td>@item.Img_Id</td>
-                        <td>@item.Salary</td>
-                        <td>@item.HiringDate</td>
-                        <td>
-                            <a asp-action="EditInstructor" asp-controller="InstructorCRUD" asp-route-id=" @item.Ins_Id" class="btn btn-primary">Edit</a>
-                            <a asp-action="DeleteInstructor" onclick="return confirm('Are you sure?')" asp-controller="InstructorCRUD" asp-route-id=" @item.Ins_Id" class="btn btn-danger">Delete</a>
-                        </td>
+                        <td colspan="10">No Instructors Found</td>
                     </tr>
                 }
-            }
-        </tbody>
-    </table>
-
-    <a class="btn btn-danger text-light" asp-action="InsertInstructor" asp-controller="InstructorCRUD">Insert</a>
+                else
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Img_Id</td>
+                            <td>@item.Name</td>
+                            <td>@item.Age</td>
+                            <td>@item.Email</td>                      
+                            <td>@item.Address</td>
+                            <td>@item.Img_Id</td>
+                            <td>@item.Salary</td>
+                            <td>@item.HiringDate</td>
+                            <td>
+                                <a asp-action="EditInstructor" asp-controller="InstructorCRUD" asp-route-id=" @item.Ins_Id" class="btn btn-primary">Edit</a>
+                                <a asp-action="DeleteInstructor" onclick="return confirm('Are you sure?')" asp-controller="InstructorCRUD" asp-route-id=" @item.Ins_Id" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+            </table>
+            <a class="btn btn-success text-light" asp-action="InsertInstructor" asp-controller="InstructorCRUD">Add Instructor</a>
+        </div>
+    </div>
+   
 </body>
 </html>

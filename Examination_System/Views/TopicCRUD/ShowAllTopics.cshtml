@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Topic>
+﻿
+
+@model IEnumerable<Topic>
 
 @{
     Layout = null;
@@ -9,37 +11,88 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>ShowAllTopics</title>
+    <title>All Topics</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 
-</head>
-<body>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Topic Name</th>
-                <th>Operation</th>
-            </tr>
+    <script src="https://kit.fontawesome.com/d3bc0f0f7a.js" crossorigin="anonymous"></script>
 
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+    <style>
+        .header {
+            padding: 8px 8%;
+            background-color: darkred;
+        }
+
+        .logo {
+            width: 12%;
+        }
+
+        #Addbtn {
+            background-color: cadetblue;
+        }
+    </style>
+   
+</head>
+<body >
+
+    <header class="header fs-6 d-flex justify-content-between align-items-center text-light">
+        <section class="d-flex">
+            <div> <a class="text-light text-decoration-none" href="https://iti.gov.eg/home"><i class="fa-regular fa-envelope"></i> ITI Website</a></div>
+            <div> <i class="fa-solid fa-mobile-screen-button ms-3"></i> 17002</div>
+        </section>
+        <section class="d-flex">
+            <a class="text-light" href="https://twitter.com/itichannel2"><i class="fa-brands fa-twitter ms-4"></i></a>
+            <a class="text-light" href="https://www.facebook.com/itichannel/"><i class="fa-brands fa-facebook ms-4"></i></a>
+            <a class="text-light" href="https://www.youtube.com/user/itichannel"><i class="fa-brands fa-youtube ms-4"></i></a>
+            <a class="text-light" href="https://eg.linkedin.com/school/information-technology-institute-iti-/"><i class="fa-brands fa-linkedin ms-4"></i></a>
+        </section>
+    </header>
+
+
+    <nav class="navbar bg-light sticky-top d-flex justify-content-around align-items-center">
+        <img src="~/itilogo.png" class="logo" />
+        <div class="d-flex ms-4 align-items-center fw-medium">
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-primary" type="submit">Search</button>
+            </form>
+            <div class="ps-2 ms-5"><a class="text-decoration-none bg-secondary bg-gradient btn text-light p-2" asp-controller="Login" asp-action="LogOut">Logout</a></div>
+        </div>
+    </nav>
+
+    
+
+    <div class="container">
+        <div class="text-center" style="height: 100vh">
+            <h3 class="justify-content-center mt-5">Topics Data</h3>
+            <table class="table table-bordered border-danger table-hover align-items-center justify-content-center mt-5 ">
+            <thead>
                 <tr>
-                    <td>@item.Topic_ID</td>
-                    <td>@item.Name</td>
-                    <td>
-                        <a asp-action="EditTopic" asp-controller="TopicCRUD" asp-route-id="@item.Topic_ID" class="btn btn-info">Edit</a>
-                        <a asp-action="DeleteTopic" asp-controller="TopicCRUD" onclick="return confirm('Are you sure?')" asp-route-id="@item.Topic_ID" class="btn btn-info">Delete</a> 
-                        
-                        
-                    </td>
+                    <th>ID</th>
+                    <th>Topic Name</th>
+                    <th>Operation</th>
                 </tr>
-            }
-        </tbody>
-    </table>
-    <a asp-action="AddTopic" asp-controller="TopicCRUD" asp-route-CrsId="@ViewBag.Crsid" class="btn btn-info">Add Topic</a>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                { 
+                    <tr> 
+                        <td>@item.Topic_ID</td>
+                        <td>@item.Name</td>
+                        <td>
+                            <a asp-action="EditTopic" asp-controller="TopicCRUD" asp-route-id="@item.Topic_ID" class="btn btn-info">Edit</a>
+                            <a asp-action="DeleteTopic" asp-controller="TopicCRUD" onclick="return confirm('Are you sure?')" asp-route-id="@item.Topic_ID" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <a asp-action="AddTopic" asp-controller="TopicCRUD" asp-route-CrsId="@ViewBag.Crsid" class="btn btn-success" >Add Topic</a> 
+            
+        </div>
+
+    </div>
+    
 
 </body>
 </html>
+

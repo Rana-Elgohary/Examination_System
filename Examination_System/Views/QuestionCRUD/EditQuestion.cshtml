@@ -10,21 +10,84 @@
     <meta name="viewport" content="width=device-width" />
     <title>Edit</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-</head>
-<body>
-    <form method="post">
-        <input asp-for="Ques_ID" type="hidden" /><br />
-        <label asp-for="Quest">Question</label><input asp-for="Quest" /><br />
-        <label asp-for="Corr_Answer">Corr_Answer</label><input asp-for="Corr_Answer" /><br />
-        <label asp-for="OPt1_Answer">OPt1_Answer</label><input asp-for="OPt1_Answer" /><br />
-        <label asp-for="OPt2_Answer">OPt2_Answer</label><input asp-for="OPt2_Answer" /><br />
-        <label asp-for="OPt3_Answer">OPt3_Answer</label><input asp-for="OPt3_Answer" /><br />
-        <label asp-for="Quest_Deg">Quest_Deg</label><input asp-for="Quest_Deg" /><br />
-        <label asp-for="Type">Type</label><input asp-for="Type" /><br />
-        <input asp-for="Exam_ID" type="hidden" /><br />
+    <script src="https://kit.fontawesome.com/d3bc0f0f7a.js" crossorigin="anonymous"></script>
 
-        <input type="submit" value="Update" class="btn btn-info text-light" />
-    </form>
+    <style>
+        .header {
+            padding: 8px 8%;
+            background-color: darkred;
+        }
+
+        .logo {
+            width: 12%;
+        }
+
+        #updatebtn {
+            background-color: cadetblue;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header fs-6 d-flex justify-content-between align-items-center text-light">
+        <section class="d-flex">
+            <div> <a class="text-light text-decoration-none" href="https://iti.gov.eg/home"><i class="fa-regular fa-envelope"></i> ITI Website</a></div>
+            <div> <i class="fa-solid fa-mobile-screen-button ms-3"></i> 17002</div>
+        </section>
+        <section class="d-flex">
+            <a class="text-light" href="https://twitter.com/itichannel2"><i class="fa-brands fa-twitter ms-4"></i></a>
+            <a class="text-light" href="https://www.facebook.com/itichannel/"><i class="fa-brands fa-facebook ms-4"></i></a>
+            <a class="text-light" href="https://www.youtube.com/user/itichannel"><i class="fa-brands fa-youtube ms-4"></i></a>
+            <a class="text-light" href="https://eg.linkedin.com/school/information-technology-institute-iti-/"><i class="fa-brands fa-linkedin ms-4"></i></a>
+        </section>
+    </header>
+
+
+    <nav class="navbar bg-light sticky-top d-flex justify-content-around align-items-center">
+        <img src="~/itilogo.png" class="logo" />
+        <div class="d-flex ms-4 align-items-center fw-medium">
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-primary" type="submit">Search</button>
+            </form>
+            <div class="ps-2 ms-5"><a class="text-decoration-none bg-secondary bg-gradient btn text-light p-2" asp-controller="Login" asp-action="LogOut">Logout</a></div>
+        </div>
+    </nav>
+
+    <div class="container  mt-lg-5" > 
+        <form method="post" class="m-xxl-5">
+            <div class="col-md-6">
+    
+                <input asp-for="Ques_ID" type="hidden" /><br />
+
+                <label asp-for="Quest">Question</label>
+                <input asp-for="Quest" class="form-control" /><br />
+
+                <label asp-for="Corr_Answer">Correct Answer</label>
+                <input asp-for="Corr_Answer" class="form-control" /><br />
+
+                <label asp-for="OPt1_Answer">Option 1</label>
+                <input asp-for="OPt1_Answer" class="form-control" /><br />
+
+                <label asp-for="OPt2_Answer">Option 2</label>
+                <input asp-for="OPt2_Answer" class="form-control" /><br />
+
+                <label asp-for="OPt3_Answer">Option 3</label>
+                <input asp-for="OPt3_Answer" class="form-control" /><br />
+
+                <label asp-for="Quest_Deg">Question Degree</label>
+                <input asp-for="Quest_Deg" class="form-control" /><br />
+
+                <label asp-for="Type">Type</label>
+                <input asp-for="Type" class="form-control"/><br />
+
+                <input asp-for="Exam_ID" type="hidden" /><br />
+
+                <input type="submit" value="Update" class="btn btn-info text-light" id="updatebtn" />
+            </div>
+        </form>
+    </div>
 
 </body>
 </html>
