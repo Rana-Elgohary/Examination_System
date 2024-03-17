@@ -51,7 +51,8 @@ namespace Examination_System.Controllers
             ViewBag.StdId = STD_ID;
             ///////////////////
             ViewBag.ExamId = ExamId;
-            return RedirectToAction("Index", "ViewStudentAnswers", new { STD_ID = STD_ID, ExamId = ExamId });
+            
+            return RedirectToAction("Index", "ViewStudentAnswers", new { STD_ID = STD_ID, ExamId = ExamId, CRS_ID = CRS_ID });
         }
     }
 }

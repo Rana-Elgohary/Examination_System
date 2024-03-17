@@ -17,7 +17,7 @@ namespace Examination_System.Controllers
         public IActionResult GenerateQuestions(int stdID, int CrsId)
         {
             var questions = DB.Question
-               .Include(q => q.Exam) // Include the related Exam to access Course_ID
+               .Include(q => q.Exam) 
                .Where(q => q.Exam.Course_ID == CrsId)
                .ToList();
 
@@ -36,6 +36,10 @@ namespace Examination_System.Controllers
             ViewBag.CrsId = CrsId;
             var Em = DB.Exam.SingleOrDefault(e => e.Course_ID == CrsId);
             ViewBag.duration = Em.Duration;
+            var StdName = DB.Student.SingleOrDefault(s => s.Id == stdID);
+            ViewBag.StudentName = StdName.Name;
+            var course = DB.Course.SingleOrDefault(c => c.Course_ID == CrsId);
+            ViewBag.CrsName = course.Name;
             return View(questions);
         }
     }

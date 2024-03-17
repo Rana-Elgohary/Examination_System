@@ -1,38 +1,117 @@
 ﻿@model Examination_System.ViewModels.LoginViewModel
 
-@{
-    Layout = null;
-}
-
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>ITI Login</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <style>
+        body {
+            background-color: #8B0000; /* Dark red background color */
+            font-family: Arial, sans-serif;
+            color: #fff; /* White text color */
+            margin: 0; /* Remove default body margin */
+            padding: 0; /* Remove default body padding */
+            display: flex; /* Use flexbox to align content */
+            align-items: center; /* Center content vertically */
+            justify-content: center; /* Center content horizontally */
+            height: 100vh; /* Set height to full viewport height */
+        }
+
+        .background-image {
+            background-image: url('/images/Information-Technology-Institute-Egypt-51922-1580646170-og .png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: left center; /* Position image to the left of the container */
+            width: 20%; /* Set width for the image section */
+            height: 100vh; /* Set height to full viewport height */
+            position: fixed; /* Position image fixed */
+            left: 0; /* Position image to the left */
+            top: 0; /* Position image to the top */
+            z-index: -1; /* Set z-index to ensure the image is behind other elements */
+        }
+
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.8); /* Set a background color with opacity */
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+            padding: 30px;
+            width: 80%; /* Set a fixed width for the container */
+            text-align: center; /* Center text */
+            margin-left: 20%
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+            .form-group label {
+                font-weight: bold;
+                color: #8B0000; /* Dark red text color */
+            }
+
+        .form-control {
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            color: #8B0000; /* Dark red text color */
+            width: 100%; /* Set width to 100% */
+            margin-bottom: 10px; /* Add some bottom margin */
+        }
+
+        .btn-login {
+            background-color: #8B0000; /* Dark red color for the login button */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            width: 100%; /* Set width to 100% */
+            transition: background-color 0.3s; /* Smooth transition for background color */
+        }
+
+            .btn-login:hover {
+                background-color: #5A0000; /* Darker red color on hover */
+                color: #fff; /* Change font color to white */
+            }
+
+        .title {
+            font-size: 24px; /* Adjust title font size */
+            margin-bottom: 10px; /* Add some bottom margin */
+        }
+
+        .subtitle {
+            font-size: 18px; /* Adjust subtitle font size */
+            margin-bottom: 20px; /* Add some bottom margin */
+        }
+    </style>
 </head>
 <body>
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="Login">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Email" class="control-label"></label>
-                    <input asp-for="Email" class="form-control" />
-                    <span asp-validation-for="Email" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Password" class="control-label"></label>
-                    <input asp-for="Password" type="password" class="form-control" />
-                    <span asp-validation-for="Password" class="text-danger"></span>
-                </div>
-
-                <div class="form-group">
-                    <input type="submit" value="Login" class="btn btn-primary" />
-                </div>
-            </form>
+    <div class="background-image"></div>
+    <div class="login-container">
+        <div class="title">
+            Welcome
         </div>
+        <div class="subtitle">
+            Login to your account
+        </div>
+        <form asp-action="Login" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Email">Email</label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password">Password</label>
+                <input asp-for="Password" type="password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-login" />
+            </div>
+        </form>
     </div>
 </body>
 </html>
