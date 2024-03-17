@@ -11,7 +11,7 @@ namespace Examination_System.Controllers
         {
             DB = Db;
         }
-        public IActionResult Index(int ExamId, int STD_ID)
+        public IActionResult Index(int ExamId, int STD_ID ,int CRS_ID)
         {
             int stdId = STD_ID;
             int Examid = ExamId;
@@ -27,9 +27,15 @@ namespace Examination_System.Controllers
                                      OPt2_Answer = Question.OPt2_Answer,
                                      OPt3_Answer = Question.OPt3_Answer,
                                      Student_Answer = StudentAnswer.Student_Answer,
-                                     If_Correct = StudentAnswer.If_Correct
-
+                                     If_Correct = StudentAnswer.If_Correct,
+                                     type=Question.Type
                                  };
+            var crsName = DB.Course.SingleOrDefault(c => c.Course_ID == CRS_ID);
+            ViewBag.CrsName= crsName.Name;
+            var Std = DB.Student.SingleOrDefault(s => s.Id == STD_ID);
+            ViewBag.StdName = Std.Name;
+            var stdCrs = DB.StudentCourse.SingleOrDefault(s => s.StudentId == STD_ID && s.CrsId == CRS_ID);
+            ViewBag.Grade = stdCrs.Grade;
             return View(StudentAnswers.ToList());
         }
     }

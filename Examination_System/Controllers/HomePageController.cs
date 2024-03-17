@@ -15,7 +15,9 @@ namespace Examination_System.Controllers
 
         public IActionResult ShowCourses(int id)
         {
-            var model = db.Student.Include(s => s.CourseStudents).ThenInclude(cs => cs.course).SingleOrDefault(s => s.Id == id);
+            var model = db.Student.Include(s => s.CourseStudents).ThenInclude(cs => cs.course).ThenInclude(e => e.Exam).SingleOrDefault(s => s.Id == id);
+            var track = db.Track.SingleOrDefault(t => t.TrackId == model.TrackId);
+            ViewBag.track = track;
             return View(model);
         }
         public IActionResult Instructor(int id)
@@ -23,5 +25,7 @@ namespace Examination_System.Controllers
             var model = db.Instructor.SingleOrDefault(s => s.Ins_Id == id);
             return View(model);
         }
+
+
     }
 }

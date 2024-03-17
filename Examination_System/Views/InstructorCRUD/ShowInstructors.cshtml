@@ -11,13 +11,44 @@
     <meta name="viewport" content="width=device-width" />
     <title>ShowInstructors</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <script src="https://kit.fontawesome.com/d3bc0f0f7a.js" crossorigin="anonymous"></script>
+    <style>
+        .header {
+            padding: 8px 8%;
+            background-color: darkred;
+        }
+
+        .logo {
+            width: 8%;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary " style="background-color:darkred ">
-        <div class="container-fluid">
-            <img src="~/whitelogo.svg" alt="Logo" width="200" height="90" class="d-inline-block align-text-top" />
+    <!-----------------------------------------------header--------------------------------------->
+    <header class="header fs-6 d-flex justify-content-between align-items-center text-light">
+        <section class="d-flex">
+            <div> <a class="text-light text-decoration-none" href="https://iti.gov.eg/home"><i class="fa-regular fa-envelope"></i> ITI Website</a></div>
+            <div> <i class="fa-solid fa-mobile-screen-button ms-3"></i> 17002</div>
+        </section>
+        <section class="d-flex">
+            <a class="text-light" href="https://twitter.com/itichannel2"><i class="fa-brands fa-twitter ms-4"></i></a>
+            <a class="text-light" href="https://www.facebook.com/itichannel/"><i class="fa-brands fa-facebook ms-4"></i></a>
+            <a class="text-light" href="https://www.youtube.com/user/itichannel"><i class="fa-brands fa-youtube ms-4"></i></a>
+            <a class="text-light" href="https://eg.linkedin.com/school/information-technology-institute-iti-/"><i class="fa-brands fa-linkedin ms-4"></i></a>
+        </section>
+    </header>
+    <!-----------------------------------------------navbar--------------------------------------->
+    <nav class="navbar bg-light sticky-top d-flex justify-content-around align-items-center">
+        <img src="~/Images/logo.png" class="logo" />
+        <div class="d-flex ms-4 align-items-center fw-medium">
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-primary" type="submit">Search</button>
+            </form>
+            <div class="ps-2 ms-5"><a class="text-decoration-none bg-secondary bg-gradient btn text-light p-2" asp-controller="Login" asp-action="LogOut">Logout</a></div>
         </div>
     </nav>
+    <!-----------------------------------------------Table--------------------------------------->
 
     <div class="container">
         <div class="text-center" style="height: 100vh">
@@ -40,9 +71,14 @@
             <tbody>
                 @if (Model.Count() == 0)
                 {
-                    <tr>
-                        <td colspan="10">No Instructors Found</td>
-                    </tr>
+                        foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td colspan="10">No Instructors Found</td>
+                            
+                            </tr>
+                        }
                 }
                 else
                 {

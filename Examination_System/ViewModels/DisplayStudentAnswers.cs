@@ -9,6 +9,7 @@
         public string OPt2_Answer { get; set; }
         public string OPt3_Answer { get; set; }
         public string Student_Answer { get; set; }
+        public string type { get; set; }
         public bool If_Correct { get; set; }
     }
 }

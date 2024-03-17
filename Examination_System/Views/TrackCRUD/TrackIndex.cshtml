@@ -10,23 +10,48 @@
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <title>Index</title>
+    <script src="https://kit.fontawesome.com/d3bc0f0f7a.js" crossorigin="anonymous"></script>
+    <style>
+        .header {
+            padding: 8px 8%;
+            background-color: darkred;
+        }
+
+        .logo {
+            width: 8%;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary " style="background-color:darkred ">
-        <div class="container-fluid">
-            <img src="~/whitelogo.svg" alt="Logo" width="200" height="90" class="d-inline-block align-text-top" />
+    <!-----------------------------------------------header--------------------------------------->
+    <header class="header fs-6 d-flex justify-content-between align-items-center text-light">
+        <section class="d-flex">
+            <div> <a class="text-light text-decoration-none" href="https://iti.gov.eg/home"><i class="fa-regular fa-envelope"></i> ITI Website</a></div>
+            <div> <i class="fa-solid fa-mobile-screen-button ms-3"></i> 17002</div>
+        </section>
+        <section class="d-flex">
+            <a class="text-light" href="https://twitter.com/itichannel2"><i class="fa-brands fa-twitter ms-4"></i></a>
+            <a class="text-light" href="https://www.facebook.com/itichannel/"><i class="fa-brands fa-facebook ms-4"></i></a>
+            <a class="text-light" href="https://www.youtube.com/user/itichannel"><i class="fa-brands fa-youtube ms-4"></i></a>
+            <a class="text-light" href="https://eg.linkedin.com/school/information-technology-institute-iti-/"><i class="fa-brands fa-linkedin ms-4"></i></a>
+        </section>
+    </header>
+    <!-----------------------------------------------navbar--------------------------------------->
+    <nav class="navbar bg-light sticky-top d-flex justify-content-around align-items-center">
+        <img src="~/Images/logo.png" class="logo" />
+        <div class="d-flex ms-4 align-items-center fw-medium">
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-primary" type="submit">Search</button>
+            </form>
+            <div class="ps-2 ms-5"><a class="text-decoration-none bg-secondary bg-gradient btn text-light p-2" asp-controller="Login" asp-action="LogOut">Logout</a></div>
         </div>
     </nav>
+    <!-----------------------------------------------Table--------------------------------------->
     <div class="container">
         <div class="text-center" style="height: 100vh">
             <h3 class="justify-content-center mt-5">Tracks Data</h3>
-            @if (Model.Count() == 0)
-            {
-             <p class="text-danger">No Tracks are available.</p>
-            }
-            else
-            {
-            <table class="table table-bordered table-hover border-danger align-items-center justify-content-center mt-5">
+            <table class="table table-bordered table-hover border-danger align-items-center justify-content-center mt-5 ">
                 <thead>
                     <tr>
                         <th>Track ID</th>
@@ -37,30 +62,40 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model)
+
+                    @if (Model.Count() == 0)
                     {
-                    <tr>
-                        <td>@item.TrackId</td>
-                        <td>@item.Name</td>
-                        <td>@item.Description</td>
-                        @if (@item.Instructor?.Name==null)
+                        <tr>
+                            <td colspan="5">No Tracks Found</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model)
                         {
-                        <td>-</td>
-                        }
-                        else
-                        {
-                        <td>@item.Instructor.Name</td>
-                        }
-                        <td>
+                            <tr>
+                                <td>@item.TrackId</td>
+                                <td>@item.Name</td>
+                                <td>@item.Description</td>
+                                @if (@item.Instructor?.Name == null)
+                                {
+                                    <td>-</td>
+                                }
+                                else
+                                {
+                                    <td>@item.Instructor.Name</td>
+
+                                }
+                                <td>
                                     <a asp-action="EditTrack" asp-controller="TrackCRUD" asp-route-TrackId="@item.TrackId" class="btn btn-info">Update</a>
                                     <a asp-action="DeleteTrack" asp-controller="TrackCRUD" asp-route-TrackId="@item.TrackId" class="btn btn-danger">Delete</a>
-                        </td>
-                    </tr>
+                                </td>
+                            </tr>
+                        }
                     }
                 </tbody>
             </table>
-            }
-            <a asp-action="CreateTrack" asp-controller="TrackCRUD" class="btn btn-success">Add New Track</a>
+            <a asp-action="CreateTrack" asp-controller="TrackCRUD" class="btn btn-Success">Add a New Track</a>
         </div>
     </div>
 </body>

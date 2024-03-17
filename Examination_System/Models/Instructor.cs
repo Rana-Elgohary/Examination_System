@@ -19,7 +19,7 @@ namespace Examination_System.Models
         [Compare("Password")]
         public required string ConfirmPassword { get; set; }
         public int Age { get; set; }
-        public int Img_Id { get; set; }
+        public string? Img_Id { get; set; }
         public float Salary { get; set; }
         [DataType(DataType.Date)] 
         public DateTime HiringDate { get; set; }
