@@ -9,20 +9,83 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Create</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <script src="https://kit.fontawesome.com/d3bc0f0f7a.js" crossorigin="anonymous"></script>
+
+    <style>
+        .header {
+            padding: 8px 8%;
+            background-color: darkred;
+        }
+
+        .logo {
+            width: 8%;
+        }
+
+        #Addbtn {
+            background-color: cadetblue;
+        }
+    </style>
 </head>
 <body>
-    <form method="post">
-        <label>Question</label><input type="text" name="Quest" value="@Model?.Quest" /><br />
-        <label>Corr_Answer</label><input type="text" name="Corr_Answer" value="@Model?.Corr_Answer" /><br />
-        <label>OPt1_Answer</label><input type="text" name="OPt1_Answer" value="@Model?.OPt1_Answer" /><br />
-        <label>OPt2_Answer</label><input type="text" name="OPt2_Answer" value="@Model?.OPt2_Answer" /><br />
-        <label>OPt3_Answer</label><input type="text" name="OPt3_Answer" value="@Model?.OPt3_Answer" /><br />
-        <label>Type</label><input type="text" name="Type" value="@Model?.Type" /><br />
-        <label>Quest_Deg</label><input type="text" name="Quest_Deg" value="@Model?.Quest_Deg" /><br />
-        <input type="hidden" name="Exam_ID" value="@ViewBag.examID" /><br />
 
-        <input type="submit" value="Add" />
-    </form>
+    <header class="header fs-6 d-flex justify-content-between align-items-center text-light">
+        <section class="d-flex">
+            <div> <a class="text-light text-decoration-none" href="https://iti.gov.eg/home"><i class="fa-regular fa-envelope"></i> ITI Website</a></div>
+            <div> <i class="fa-solid fa-mobile-screen-button ms-3"></i> 17002</div>
+        </section>
+        <section class="d-flex">
+            <a class="text-light" href="https://twitter.com/itichannel2"><i class="fa-brands fa-twitter ms-4"></i></a>
+            <a class="text-light" href="https://www.facebook.com/itichannel/"><i class="fa-brands fa-facebook ms-4"></i></a>
+            <a class="text-light" href="https://www.youtube.com/user/itichannel"><i class="fa-brands fa-youtube ms-4"></i></a>
+            <a class="text-light" href="https://eg.linkedin.com/school/information-technology-institute-iti-/"><i class="fa-brands fa-linkedin ms-4"></i></a>
+        </section>
+    </header>
 
+
+    <nav class="navbar bg-light sticky-top d-flex justify-content-around align-items-center">
+        <img src="~/Images/logo.png" class="logo" />
+        <div class="d-flex ms-4 align-items-center fw-medium">
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-primary" type="submit">Search</button>
+            </form>
+            <div class="ps-2 ms-5"><a class="text-decoration-none bg-secondary bg-gradient btn text-light p-2" asp-controller="Login" asp-action="LogOut">Logout</a></div>
+        </div>
+    </nav>
+
+
+    <div class="container  mt-lg-5" > 
+        <form method="post" class="m-xxl-5">
+            <div class="col-md-6">
+   
+                <label>Question</label>
+                <input type="text" name="Quest" value="@Model?.Quest" class="form-control" /><br />
+
+                <label>Correct Answer</label>
+                <input type="text" name="Corr_Answer" value="@Model?.Corr_Answer" class="form-control" /> <br />
+
+                <label>Option One</label>
+                <input type="text" name="OPt1_Answer" value="@Model?.OPt1_Answer" class="form-control" /><br />
+
+                <label>Option Two</label>
+                <input type="text" name="OPt2_Answer" value="@Model?.OPt2_Answer" class="form-control" /><br />
+
+                <label>Option Three</label>
+                <input type="text" name="OPt3_Answer" value="@Model?.OPt3_Answer" class="form-control" /><br />
+
+                <label>Type</label>
+                <input type="text" name="Type" value="@Model?.Type" class="form-control" /><br />
+
+                <label>Question Degree</label>
+                <input type="text" name="Quest_Deg" value="@Model?.Quest_Deg" class="form-control" /><br />
+
+                <input type="hidden" name="Exam_ID" value="@ViewBag.examID"/><br />
+
+                <input type="submit" value="Add" class="btn text-light" id="Addbtn"/>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

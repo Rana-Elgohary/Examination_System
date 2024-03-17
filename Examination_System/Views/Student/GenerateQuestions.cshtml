@@ -60,7 +60,7 @@
         <h3>Course Name : @CrsName</h3>
         <h3>Exam Duration :@Duration</h3>
     </div>
-    <form id="examForm" asp-controller="StudentAnswer" asp-action="AnswerHandling">
+    <form method="post" id="examForm" asp-controller="StudentAnswer" asp-action="AnswerHandling">
         @for (int i = 0; i < Model.Count; i++)
         {
             var question = Model[i];

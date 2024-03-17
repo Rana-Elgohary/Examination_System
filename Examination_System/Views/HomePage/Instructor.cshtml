@@ -136,7 +136,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Instructor Courses</h5>
                     <p class="card-text">Enter Instructor Id to show courses</p>
-                    <form asp-controller="Admin" asp-action="NameOfCourses_ForInstructor_NumOfStudent">
+                    <form method="post" asp-controller="Admin" asp-action="NameOfCourses_ForInstructor_NumOfStudent">
                         <input type="text" name="InsID" placeholder="Instructor ID" />
                         <input type="submit" value="Show" class="submit btn mt-1" />
                     </form>
@@ -149,7 +149,7 @@
                 <div class="card-body">
                 <h5 class="card-title">Track Students</h5>
                     <p class="card-text">Enter track Id to get students</p>
-                    <form asp-controller="Admin" asp-action="theStudentsInformationAccordingToTrackId">
+                    <form method="post" asp-controller="Admin" asp-action="theStudentsInformationAccordingToTrackId">
                         <input type="text" name="TrackID" placeholder="Track ID" />
                         <input type="submit" value="Show" class="submit btn mt-1" />
                     </form>
@@ -161,7 +161,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Student Grades</h5>
                     <p class="card-text">Enter student Id to show grades</p>
-                    <form asp-controller="Admin" asp-action="takesStdIDAndReturnsGradesInAllCourses">
+                    <form method="post" asp-controller="Admin" asp-action="takesStdIDAndReturnsGradesInAllCourses">
                         <input type="text" name="StdID" placeholder="Student ID" />
                         <input type="submit" value="Show" class="submit btn mt-1" />
                     </form>
@@ -173,7 +173,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Course topics</h5>
                     <p class="card-text">Enter Course Id to show Topics</p>
-                    <form asp-controller="Admin" asp-action="TopicsData_By_CourseID">
+                    <form method="post" asp-controller="Admin" asp-action="TopicsData_By_CourseID">
                         <input type="text" name="CoursesID" placeholder="Course ID" />
                         <input type="submit" value="Show" class="submit btn mt-1" />
                     </form>
@@ -185,7 +185,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Exam</h5>
                     <p class="card-text">Enter exam Id to get the exam</p>
-                    <form asp-controller="Admin" asp-action="GetQuestions_Choices">
+                    <form method="post" asp-controller="Admin" asp-action="GetQuestions_Choices">
                         <input type="text" name="ExId" placeholder="Exam ID" />
                         <input type="submit" value="Show" class="submit btn mt-1" />
                     </form>
@@ -197,7 +197,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Student exam</h5>
                     <p class="card-text">Enter Student Id to get the student exam with answers</p>
-                    <form asp-controller="Admin" asp-action="GetQuestions_Stu_Answers">
+                    <form method="post" asp-controller="Admin" asp-action="GetQuestions_Stu_Answers">
                         <input type="text" name="ExId" placeholder="Exam ID" />
                         <input type="text" name="StuId" placeholder="Student ID" />
                         <input type="submit" value="Show" class="submit btn mt-1" />

@@ -18,11 +18,12 @@
         }
 
         .logo {
-            width: 12%;
+            width: 8%;
         }
     </style>
 </head>
 <body>
+
     <!-----------------------------------------------header--------------------------------------->
     <header class="header fs-6 d-flex justify-content-between align-items-center text-light">
         <section class="d-flex">
@@ -38,7 +39,7 @@
     </header>
     <!-----------------------------------------------navbar--------------------------------------->
     <nav class="navbar bg-light sticky-top d-flex justify-content-around align-items-center">
-        <img src="~/images/itilogo.png" class="logo" />
+        <img src="~/Images/logo.png" class="logo" />
         <div class="d-flex ms-4 align-items-center fw-medium">
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -48,7 +49,52 @@
         </div>
     </nav>
     <!-----------------------------------------------Table--------------------------------------->
+
     <div class="container">
+        <div class="text-center" style="height: 100vh">
+            <h3 class="justify-content-center mt-5">Instructors Tracks Data</h3>
+            <table class="table table-bordered table-hover border-danger align-items-center justify-content-center mt-5">
+
+
+                <thead>
+                    <tr>
+                        <th>Track</th>
+                        <th>Instructor</th>
+                        <th>Operation</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Count() == 0)
+                    {
+                        <tr>
+                            <td colspan="3">No Data Found</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Track.Name</td>
+                                <td>@item.instructor.Name</td>
+                                <td>
+                                    <a class="btn btn-danger" asp-action="DeleteTrackInstructor" asp-controller="TrackInstructorCRUD" onclick="return confirm (' Are you sure?')" asp-route-idstring="@String.Join(",", item.TrackId, item.Ins_Id)">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            <a asp-action="InsertTrackInstructor" asp-controller="TrackInstructorCRUD" class="btn btn-success">Add</a>
+    
+        </div>
+    </div>
+
+
+
+
+    @* <div class="container">
         <div class="text-center" style="height: 100vh">
             <h3 class="justify-content-center mt-5">Track Instructors</h3>
             <table class="table table-bordered table-hover border-danger align-items-center justify-content-center mt-5 ">
@@ -82,7 +128,8 @@
                 </tbody>
             </table>
             <a asp-action="InsertTrackInstructor" asp-controller="TrackInstructorCRUD" class="btn btn-info">Add</a>
+
         </div>
-    </div>
+    </div> *@
 </body>
 </html>
