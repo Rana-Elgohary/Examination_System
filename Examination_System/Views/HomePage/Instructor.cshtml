@@ -9,77 +9,208 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Instructor</title>
+    <title>ITI Instructor</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" />
+    <script src="https://kit.fontawesome.com/d3bc0f0f7a.js" crossorigin="anonymous"></script>
+
+    <style>
+        .sidenav a:hover{
+            background-color: #7f7e80;
+        }
+        .header {
+            padding: 8px 8%;
+            background-color: darkred;
+        }
+        .logo {
+            width: 12%;
+        }
+        .img1:hover{
+            opacity:50%
+        }
+        .img1{
+            height:200px;
+        }
+        .submit{
+            background-color:darkred;
+            color:antiquewhite;
+        }
+        .exp{
+            height: 150px;
+        }
+        .div1{
+            margin-left:40%;
+            margin-right :20%;
+        }
+
+        .grayColor {
+            color: lightgray;
+        }
+    </style>
 </head>
-<body>
-    <h1>Hello @Model.Name</h1>
-    <br />
+<body  style="height:100vh;">
 
-    @* <a asp-action="NameOfCourses_ForInstructor_NumOfStudent" asp-controller="Admin" asp-route-InsID="@Model.Ins_Id" class="btn btn-success">Show Courses</a> *@
-    
-    <form asp-controller="Admin" asp-action="NameOfCourses_ForInstructor_NumOfStudent" >
-        <input type="text" name="InsID" placeholder="Instructor ID" />
-        <input type="submit" value="Show Courses" class="btn btn-success" />
-    </form>
-    <br />
+    <!-----------------------------------------------sidebar--------------------------------------->
+    <div class="sidenav position-absolute pt-2" style="height:100%;width:200px;top:115px;left:0;background-color: #f2f7f4;">
+        <div class="mt-3" style="margin-left:15px;width:170px;">
+            
+            <a asp-action="ShowInstructorCourse" asp-controller="InstructorCourseCRUD" class="btn btn-outline-secondary btn-sm">Show Instructor Courses</a>
+            <br />
+            <br />
+            <a asp-action="ShowTrackInstructor" asp-controller="TrackInstructorCRUD" class="btn btn-outline-secondary btn-sm">Show Track Instructors</a>
+            <br />
+            <br />
+            <a asp-action="ShowStudentCourse" asp-controller="StudentCourseCRUD" class="btn btn-outline-secondary btn-sm">Show Student Courses</a>
+            <br />
+            <br />
+            <a asp-action="ShowInstructors" asp-controller="InstructorCRUD" class="btn btn-outline-secondary btn-sm">Show Instructors</a>
+            <br />
+            <br />
+            <a asp-action="ShowStudents" asp-controller="StudentCRUD" class="btn btn-outline-secondary btn-sm">Show Students</a>
+            <br />
+            <br />
+            <a asp-action="CourseIndex" asp-controller="CourseCRUD" class="btn btn-outline-secondary btn-sm">Show Courses</a>
+            <br />
+            <br />
+            <a asp-action="TrackIndex" asp-controller="TrackCRUD" class="btn btn-outline-secondary btn-sm">Show Tracks</a>
+            <br />
+            <br />
+            <a asp-action="GetExams" asp-controller="ExamCRUD" class="btn btn-outline-secondary btn-sm">Show Exams</a>
 
-    <form asp-controller="Admin" asp-action="theStudentsInformationAccordingToTrackId">
-        <input type="text" name="TrackID" placeholder="Track ID" />
-        <input type="submit" value="Show StudentByTrack" class="btn btn-success" />
-    </form>
+        </div>
 
-    <br />
-    <form asp-controller="Admin" asp-action="takesStdIDAndReturnsGradesInAllCourses">
-        <input type="text" name="StdID" placeholder="Student ID" />
-        <input type="submit" value="Show StudentGradesById" class="btn btn-success" />
-    </form>
-    
-    <br />
-    <form asp-controller="Admin" asp-action="TopicsData_By_CourseID">
-        <input type="text" name="CoursesID" placeholder="Course ID" />
-        <input type="submit" value="Show Topics" class="btn btn-success" />
-    </form>
+    </div>
+    <!-----------------------------------------------header--------------------------------------->
+    <header class="header fs-6 d-flex justify-content-between align-items-center text-light">
+        <section class="d-flex">
+            <div> <a class="text-light text-decoration-none" href="https://iti.gov.eg/home"><i class="fa-regular fa-envelope"></i> ITI Website</a></div>
+            <div> <i class="fa-solid fa-mobile-screen-button ms-3"></i> 17002</div>
+        </section>
+        <section class="d-flex">
+            <a class="text-light" href="https://twitter.com/itichannel2"><i class="fa-brands fa-twitter ms-4"></i></a>
+            <a class="text-light" href="https://www.facebook.com/itichannel/"><i class="fa-brands fa-facebook ms-4"></i></a>
+            <a class="text-light" href="https://www.youtube.com/user/itichannel"><i class="fa-brands fa-youtube ms-4"></i></a>
+            <a class="text-light" href="https://eg.linkedin.com/school/information-technology-institute-iti-/"><i class="fa-brands fa-linkedin ms-4"></i></a>
+        </section>
+    </header>
+    <!-----------------------------------------------navbar--------------------------------------->
 
-    <br />
+    <nav class="navbar bg-light sticky-top d-flex justify-content-around align-items-center">
+        <img src= "~/images/itilogo3.png" class="logo" />
+        <div class="d-flex ms-4 align-items-center fw-medium">
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-primary" type="submit">Search</button>
+            </form>
+            <div class="ps-2 ms-5"><a class="text-decoration-none bg-secondary bg-gradient btn text-light p-2" asp-controller="Login" asp-action="LogOut">Logout</a></div>
+        </div>
+    </nav>
+    <!-----------------------------------------------content--------------------------------------->
 
-    <form asp-controller="Admin" asp-action="GetQuestions_Choices">
-        <input type="text" name="ExId" placeholder="Exam ID" />
-        <input type="submit" value="Show Exam" class="btn btn-success" />
-    </form>
-    <br />
+        <div class="row d-flex flex-wrap justify-content-around align-items-center "style="margin:30px; margin-left:200px;" >
 
-    <form asp-controller="Admin" asp-action="GetQuestions_Stu_Answers">
-        <input type="text" name="ExId" placeholder="Exam ID" />
-        <input type="text" name="StuId" placeholder="Student ID" />
-        <input type="submit" value="Show Exam" class="btn btn-success" />
-    </form>
-
-    <br />
-    <a asp-action="ShowStudents" asp-controller="StudentCRUD" class="btn btn-info text-light">Show Students</a>
-    <br />
-    <a asp-action="ShowInstructors" asp-controller="InstructorCRUD" class="btn btn-info text-light">Show Instructors</a>
-    <br />
-    <a asp-action="CourseIndex" asp-controller="CourseCRUD" class="btn btn-info text-light">Show Courses</a>
-    <br />
-    <a asp-action="GetExams" asp-controller="ExamCRUD" class="btn btn-info text-light">Show Exams</a>
-    <br />
-    <a asp-action="ShowInstructorCourse" asp-controller="InstructorCourseCRUD" class="btn btn-info text-light">Show InstructorCourses</a>
-    <br />
-    <a asp-action="ShowStudentCourse" asp-controller="StudentCourseCRUD" class="btn btn-info text-light">Show StudentCourse</a>
-    <br />
-    <a asp-action="TrackIndex" asp-controller="TrackCRUD" class="btn btn-info text-light">Show Tracks</a>
-    <br />
-    <a asp-action="ShowTrackInstructor" asp-controller="TrackInstructorCRUD" class="btn btn-info text-light">Show TrackInstructor</a>
+            <div class="card mb-5" style="width: 30%;">
+                <img class="img1" src="~/images/5.jpg" class="card-img-top " alt="image1" />
+                <div class="card-body">
+                    <h5 class="card-title">Instructor Courses</h5>
+                    <p class="card-text">Enter Instructor Id to show courses</p>
+                    <form asp-controller="Admin" asp-action="NameOfCourses_ForInstructor_NumOfStudent">
+                        <input type="text" name="InsID" placeholder="Instructor ID" />
+                        <input type="submit" value="Show" class="submit btn mt-1" />
+                    </form>
+                </div>
+            </div>
 
 
+            <div class="card mb-5" style="width: 30%;">
+                <img class="img1" src="~/images/1.jpg" class="card-img-top " alt="image1" />
+                <div class="card-body">
+                <h5 class="card-title">Track Students</h5>
+                    <p class="card-text">Enter track Id to get students</p>
+                    <form asp-controller="Admin" asp-action="theStudentsInformationAccordingToTrackId">
+                        <input type="text" name="TrackID" placeholder="Track ID" />
+                        <input type="submit" value="Show" class="submit btn mt-1" />
+                    </form>
+                </div>
+            </div>
 
+            <div class="card mb-5" style="width: 30%;">
+                <img class="img1" src="~/images/3.webp" class="card-img-top " alt="image1" />
+                <div class="card-body">
+                    <h5 class="card-title">Student Grades</h5>
+                    <p class="card-text">Enter student Id to show grades</p>
+                    <form asp-controller="Admin" asp-action="takesStdIDAndReturnsGradesInAllCourses">
+                        <input type="text" name="StdID" placeholder="Student ID" />
+                        <input type="submit" value="Show" class="submit btn mt-1" />
+                    </form>
+                </div>
+            </div>  
 
+            <div class="card mb-5" style="width: 30%;">
+                <img class="img1" src="~/images/4.png" class="card-img-top " alt="image1" />
+                <div class="card-body">
+                    <h5 class="card-title">Course topics</h5>
+                    <p class="card-text">Enter Course Id to show Topics</p>
+                    <form asp-controller="Admin" asp-action="TopicsData_By_CourseID">
+                        <input type="text" name="CoursesID" placeholder="Course ID" />
+                        <input type="submit" value="Show" class="submit btn mt-1" />
+                    </form>
+                </div>
+            </div>
 
+            <div class="card mb-5" style="width: 30%;">
+                <img class="img1" src="~/images/2.jpg" class="card-img-top " alt="image1" />
+                <div class="card-body">
+                    <h5 class="card-title">Exam</h5>
+                    <p class="card-text">Enter exam Id to get the exam</p>
+                    <form asp-controller="Admin" asp-action="GetQuestions_Choices">
+                        <input type="text" name="ExId" placeholder="Exam ID" />
+                        <input type="submit" value="Show" class="submit btn mt-1" />
+                    </form>
+                </div>
+            </div>
 
+            <div class="card mb-5" style="width: 30%;">
+                <img class="img1 exp"  src="~/images/10.webp" class="card-img-top " alt="image1" />
+                <div class="card-body">
+                    <h5 class="card-title">Student exam</h5>
+                    <p class="card-text">Enter Student Id to get the student exam with answers</p>
+                    <form asp-controller="Admin" asp-action="GetQuestions_Stu_Answers">
+                        <input type="text" name="ExId" placeholder="Exam ID" />
+                        <input type="text" name="StuId" placeholder="Student ID" />
+                        <input type="submit" value="Show" class="submit btn mt-1" />
+                    </form>
+                </div>
+            </div>
 
-    <br />
+        </div>
+    <!------------------------------------------------------ Footer ------------------------------------------------------>
+    <footer class="d-flex text-light justify-content-between align-items-center" style="background-color:darkred;padding: 8px 8%;">
+        <div class="logoAndP w-50">
+            <img class="w-25" src="~/images/WhiteLogo4.svg" />
+            <p class="grayColor mt-2">Over 30 years, ITI has kept updating its training portfolio thru continuous monitoring for the future global tech trends, as well as the country’s national and mega projects, hence; sustaining its graduates’ employment percentage to 85 prior their graduation.</p>
+        </div>
+        <div>
+            <h3 class="mb-4">KEEP IN TOUCH</h3>
+            <div>
+                <a class="text-decoration-none grayColor" href="https://iti.gov.eg/home"><i class="fa-regular fa-envelope"></i> ITI Website</a>
+                <span>
+                    <i class="fa-solid fa-mobile-screen-button ms-3 grayColor"></i> 17002
+                    <section class="mt-3 d-flex">
+                        <a class="grayColor" href="https://twitter.com/itichannel2"><i class="fa-brands fa-twitter ms-4"></i></a>
+                        <a class="grayColor" href="https://www.facebook.com/itichannel/"><i class="fa-brands fa-facebook ms-4"></i></a>
+                        <a class="grayColor" href="https://www.youtube.com/user/itichannel"><i class="fa-brands fa-youtube ms-4"></i></a>
+                        <a class="grayColor" href="https://eg.linkedin.com/school/information-technology-institute-iti-/"><i class="fa-brands fa-linkedin ms-4"></i></a>
+                    </section>
+                </span>
+            </div>
+        </div>
+    </footer>
 
-    <a class="" asp-area="" asp-controller="Login" asp-action="LogOut">Logout</a>
+    <div class="px-5 bg-light d-flex justify-content-between">
+        <p>Copyright ©2022 All Rights Reserved. Information Technology Institute (ITI).</p>
+        <p>Terms of Use . Privacy Policy</p>
+    </div>
 </body>
 </html>
+

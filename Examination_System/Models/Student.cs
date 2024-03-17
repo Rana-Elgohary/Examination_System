@@ -22,7 +22,7 @@ namespace Examination_System.Models
         public string Address { get; set; }
        // [ForeignKey("student")]
        // public int Std_Leader { get; set; }
-        public int Image_ID { get; set; }
+        public string Image_ID { get; set; }
 
         [ForeignKey("Track")]
         public int? TrackId { get; set; }
