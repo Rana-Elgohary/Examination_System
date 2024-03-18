@@ -36,6 +36,7 @@ namespace Examination_System.Controllers
             ViewBag.StdName = Std.Name;
             var stdCrs = DB.StudentCourse.SingleOrDefault(s => s.StudentId == STD_ID && s.CrsId == CRS_ID);
             ViewBag.Grade = stdCrs.Grade;
+            ViewBag.STD_ID = STD_ID;
             return View(StudentAnswers.ToList());
         }
     }

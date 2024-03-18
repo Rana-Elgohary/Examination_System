@@ -4,6 +4,7 @@
     var Duration = ViewBag.Duration;
     var StdName = ViewBag.StdName;
     var CrsName = ViewBag.CrsName;
+    var STD_ID = ViewBag.STD_ID;
     float grade=ViewBag.Grade;
     Layout = null;
 }
@@ -151,5 +152,6 @@
 
         }
     </form>
+    <a class="DarkredBtn text-light p-2 rounded" asp-controller="HomePage" asp-action="ShowCourses" asp-route-id="@STD_ID">Go Home</a>
 </body>
 </html>

@@ -11,9 +11,9 @@ namespace Examination_System.Controllers
         {
             db = _db;
         }
-        public IActionResult CourseIndex()  //fn to display ist of courses 
+        public IActionResult CourseIndex() 
         {
-            var model = db.Course.ToList(); // list of courses
+            var model = db.Course.ToList();
             return View(model);
         }
 
