@@ -62,7 +62,7 @@
 
      <div class="container  mt-lg-5">
 
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
            <div class="col-md-6">
                 <div class="form-group">
                     <label asp-for="Name"></label>
@@ -100,8 +100,8 @@
 
                      <br />
 
-                    <label asp-for="Image_ID">Image ID</label>
-                     <input asp-for="Image_ID" class="form-control" />
+                     <label asp-for="Image_ID">Image ID</label>
+                    <input class="form-control" type="file" name="imageFile" />
                      <span asp-validation-for="Image_ID" class="text-danger"></span>
 
                      <br />

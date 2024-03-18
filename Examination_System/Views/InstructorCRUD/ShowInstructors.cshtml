@@ -85,12 +85,19 @@
                     foreach (var item in Model)
                     {
                         <tr>
-                            <td>@item.Img_Id</td>
+                            <td>@item.Ins_Id</td>
                             <td>@item.Name</td>
                             <td>@item.Age</td>
                             <td>@item.Email</td>                      
                             <td>@item.Address</td>
-                            <td>@item.Img_Id</td>
+                            @if (@item.Img_Id == null)
+                            {
+                                <td>-</td>
+                            }
+                            else
+                            {
+                                <td>@item.Img_Id</td>
+                            }
                             <td>@item.Salary</td>
                             <td>@item.HiringDate</td>
                             <td>

@@ -25,11 +25,22 @@ namespace Examination_System.Controllers
         }
 
         [HttpPost]
-        public IActionResult InsertStudent(Student stu)
+        public async Task<IActionResult> InsertStudent(Student stu, IFormFile? imageFile)
         {
+            string fileImage = imageFile.FileName;
+            string fileExt = fileImage.Split('.').Last();
+
             if (ModelState.IsValid)
             {
                 DB.Student.Add(stu);
+                DB.SaveChanges();
+                var st = DB.Student.FirstOrDefault(a => a.Email == stu.Email && a.Password == stu.Password);
+                st.Image_ID = $"{stu.Id}.{fileExt}";
+                using (var fs = new FileStream($"wwwroot/images/Students/{st.Id}.{fileExt}", FileMode.Create))
+                {
+                    await imageFile.CopyToAsync(fs);
+                }
+                DB.Student.Update(st);
                 DB.SaveChanges();
                 return RedirectToAction("ShowStudents");
             }
@@ -52,8 +63,27 @@ namespace Examination_System.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditStudent(Student stu)
+        public async Task<IActionResult> EditStudent(Student stu, string OldStuImg, IFormFile? imageFile)
         {
+            if(imageFile != null)
+            {
+                if (System.IO.File.Exists($"wwwroot/images/Students/{OldStuImg}"))
+                {
+                    System.IO.File.Delete($"wwwroot/images/Students/{OldStuImg}");
+                }
+                string fileImage = imageFile.FileName;
+                string fileExten = fileImage.Split('.').Last();
+                using (var fs = new FileStream($"wwwroot/images/Students/{stu.Id}.{fileExten}", FileMode.Create))
+                {
+                    await imageFile.CopyToAsync(fs);
+                }
+                stu.Image_ID = $"{stu.Id}.{fileExten}";
+            }
+            else
+            {
+                stu.Image_ID = OldStuImg;
+            }
+
             DB.Student.Update(stu);
             DB.SaveChanges();
             return RedirectToAction("ShowStudents");
@@ -62,6 +92,10 @@ namespace Examination_System.Controllers
         public IActionResult DeleteStudent(int id)
         {
             var model = DB.Student.SingleOrDefault(a => a.Id == id);
+            if (System.IO.File.Exists($"wwwroot/images/Students/{model.Image_ID}"))
+            {
+                System.IO.File.Delete($"wwwroot/images/Students/{model.Image_ID}");
+            }
             if (model == null)
             {
                 return NotFound();

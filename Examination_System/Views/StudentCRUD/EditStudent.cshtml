@@ -59,7 +59,7 @@
     </nav>
 
     <div class="container  mt-lg-5" > 
-        <form method="post" class="m-xxl-5">
+        <form method="post" class="m-xxl-5" asp-route-OldStuImg="@Model.Image_ID" enctype="multipart/form-data">
             <div class="col-md-6">
     
                 <input asp-for="Id" type="hidden" /><br />
@@ -100,7 +100,7 @@
                 <br />
 
                 <label asp-for="Image_ID">Image ID</label>
-                <input asp-for="Image_ID" class="form-control" />
+                <input class="form-control" type="file" name="imageFile" />
                 <span asp-validation-for="Image_ID" class="text-danger"></span>
 
                 <br />

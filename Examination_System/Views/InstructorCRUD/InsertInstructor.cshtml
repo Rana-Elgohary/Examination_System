@@ -55,7 +55,7 @@
     </nav>
     <!---------------------------------------content------------------------------------------------->
     <div class="container">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <div class ="col-md-6 m-3">
                 <div class ="form-group">
                     <label asp-for="Name"></label>
@@ -102,7 +102,7 @@
 
                 <div class="form-group">
                     <label asp-for="Img_Id"></label>
-                    <input asp-for="Img_Id" class="form-control" />
+                    <input class="form-control" type="file" name="imageFile" />
                     <span asp-validation-for="Img_Id" class="text-danger"></span>
                     <br />
                 </div>

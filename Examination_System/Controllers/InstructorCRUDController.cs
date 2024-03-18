@@ -23,11 +23,21 @@ namespace Examination_System.Controllers
         }
 
         [HttpPost]
-        public IActionResult InsertInstructor(Instructor ins)
+        public async Task<IActionResult> InsertInstructor(Instructor ins, IFormFile? imageFile)
         {
+            string fileImage = imageFile.FileName;
+            string fileExt = fileImage.Split('.').Last();
             if (ModelState.IsValid)
             {
                 DB.Instructor.Add(ins);
+                DB.SaveChanges();
+                var instr = DB.Instructor.SingleOrDefault(a => a.Password == ins.Password && a.Email == ins.Email);
+                instr.Img_Id = $"{instr.Ins_Id}.{fileExt}";
+                using (var fs = new FileStream($"wwwroot/images/Instructors/{instr.Ins_Id}.{fileExt}", FileMode.Create))
+                {
+                    await imageFile.CopyToAsync(fs);
+                }
+                DB.Instructor.Update(instr);
                 DB.SaveChanges();
                 return RedirectToAction("ShowInstructors");
             }
@@ -48,8 +58,27 @@ namespace Examination_System.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditInstructor(Instructor ins)
+        public async Task<IActionResult> EditInstructor(Instructor ins, string OldInsImg, IFormFile? imageFile)
         {
+            if (imageFile != null)
+            {
+                if (System.IO.File.Exists($"wwwroot/images/Instructors/{OldInsImg}"))
+                {
+                    System.IO.File.Delete($"wwwroot/images/Instructors/{OldInsImg}");
+                }
+                string fileImage = imageFile.FileName;
+                string fileExten = fileImage.Split('.').Last();
+                using (var fs = new FileStream($"wwwroot/images/Instructors/{ins.Ins_Id}.{fileExten}", FileMode.Create))
+                {
+                    await imageFile.CopyToAsync(fs);
+                }
+                ins.Img_Id = $"{ins.Ins_Id}.{fileExten}";
+            }
+            else
+            {
+                ins.Img_Id = OldInsImg;
+            }
+
             DB.Instructor.Update(ins);
             DB.SaveChanges();
             return RedirectToAction("ShowInstructors");
@@ -58,6 +87,10 @@ namespace Examination_System.Controllers
         public IActionResult DeleteInstructor(int id)
         {
             var model = DB.Instructor.SingleOrDefault(a => a.Ins_Id == id);
+            if (System.IO.File.Exists($"wwwroot/images/Instructors/{model.Img_Id}"))
+            {
+                System.IO.File.Delete($"wwwroot/images/Instructors/{model.Img_Id}");
+            }
             if (model == null)
             {
                 return NotFound();
