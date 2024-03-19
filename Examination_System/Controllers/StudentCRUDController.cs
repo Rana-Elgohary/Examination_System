@@ -27,21 +27,24 @@ namespace Examination_System.Controllers
         [HttpPost]
         public async Task<IActionResult> InsertStudent(Student stu, IFormFile? imageFile)
         {
-            string fileImage = imageFile.FileName;
-            string fileExt = fileImage.Split('.').Last();
-
             if (ModelState.IsValid)
             {
                 DB.Student.Add(stu);
                 DB.SaveChanges();
-                var st = DB.Student.FirstOrDefault(a => a.Email == stu.Email && a.Password == stu.Password);
-                st.Image_ID = $"{stu.Id}.{fileExt}";
-                using (var fs = new FileStream($"wwwroot/images/Students/{st.Id}.{fileExt}", FileMode.Create))
+                if(imageFile != null)
                 {
-                    await imageFile.CopyToAsync(fs);
+                    string fileImage = imageFile.FileName;
+                    string fileExt = fileImage.Split('.').Last();
+
+                    var st = DB.Student.FirstOrDefault(a => a.Email == stu.Email && a.Password == stu.Password);
+                    st.Image_ID = $"{stu.Id}.{fileExt}";
+                    using (var fs = new FileStream($"wwwroot/images/Students/{st.Id}.{fileExt}", FileMode.Create))
+                    {
+                        await imageFile.CopyToAsync(fs);
+                    }
+                    DB.Student.Update(st);
+                    DB.SaveChanges();
                 }
-                DB.Student.Update(st);
-                DB.SaveChanges();
                 return RedirectToAction("ShowStudents");
             }
             else

@@ -25,20 +25,24 @@ namespace Examination_System.Controllers
         [HttpPost]
         public async Task<IActionResult> InsertInstructor(Instructor ins, IFormFile? imageFile)
         {
-            string fileImage = imageFile.FileName;
-            string fileExt = fileImage.Split('.').Last();
+            
             if (ModelState.IsValid)
             {
                 DB.Instructor.Add(ins);
                 DB.SaveChanges();
-                var instr = DB.Instructor.SingleOrDefault(a => a.Password == ins.Password && a.Email == ins.Email);
-                instr.Img_Id = $"{instr.Ins_Id}.{fileExt}";
-                using (var fs = new FileStream($"wwwroot/images/Instructors/{instr.Ins_Id}.{fileExt}", FileMode.Create))
+                if(imageFile != null)
                 {
-                    await imageFile.CopyToAsync(fs);
+                    string fileImage = imageFile.FileName;
+                    string fileExt = fileImage.Split('.').Last();
+                    var instr = DB.Instructor.SingleOrDefault(a => a.Password == ins.Password && a.Email == ins.Email);
+                    instr.Img_Id = $"{instr.Ins_Id}.{fileExt}";
+                    using (var fs = new FileStream($"wwwroot/images/Instructors/{instr.Ins_Id}.{fileExt}", FileMode.Create))
+                    {
+                        await imageFile.CopyToAsync(fs);
+                    }
+                    DB.Instructor.Update(instr);
+                    DB.SaveChanges();
                 }
-                DB.Instructor.Update(instr);
-                DB.SaveChanges();
                 return RedirectToAction("ShowInstructors");
             }
             else
